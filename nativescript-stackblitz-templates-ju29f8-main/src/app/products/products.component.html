@@ -1,0 +1,34 @@
+<ActionBar title="List of my products"></ActionBar>
+
+<ScrollView>
+  <GridLayout>
+    <!-- <StackLayout>
+    <Button text="Click Me" nsRouterLink="/productdetails"></Button>
+
+
+  </StackLayout> -->
+
+    <StackLayout>
+      <StackLayout
+        *ngFor="let product of productsReal"
+        class="productContainer"
+        [nsRouterLink]="['/productdetails', product.id]"
+        (tap)="getProductDetails(product.id)"
+      >
+        <Image
+          [src]="product.attributes.ProductImages.data[0].attributes.url"
+          class="productImage"
+        ></Image>
+        <Label [text]="product.attributes.ProductName" class="h1"></Label>
+        <Label
+          [text]="product.attributes.ProductDescription"
+          textWrap="true"
+        ></Label>
+        <label
+          [text]="'$' + product.attributes.Price"
+          class="productPrice"
+        ></label>
+      </StackLayout>
+    </StackLayout>
+  </GridLayout>
+</ScrollView>
